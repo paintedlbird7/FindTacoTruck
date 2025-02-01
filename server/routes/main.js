@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const Taco = require('../models/Taco');
 
-// GET
+
+/**
+ * GET /
+ * HOME
+*/
 router.get('', (req, res) => {
     const locals = {
         title: "Find Taco Truck",
@@ -9,6 +14,21 @@ router.get('', (req, res) => {
       }  
     res.render('index', { locals })
 })
+
+function insertTacoData () {
+  Taco.insertMany([
+    {
+        FACILITY_NAME: "PALETERIA RAMIREZ",
+      },
+      {
+        FACILITY_NAME: "VANESSA'S HOT DOG",
+      },
+      {
+        FACILITY_NAME: "CHURROS LAND",
+      },
+  ])
+}
+insertTacoData();
 
 router.get('/about', (req, res) => {  
     res.render('about')
